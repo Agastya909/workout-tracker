@@ -1,6 +1,7 @@
 "use client";
 
 import { createClient } from "@/lib/supabase/client";
+import { colors } from "@/lib/colors";
 import { useState } from "react";
 
 type Mode = "signin" | "signup";
@@ -41,28 +42,28 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-950 px-4">
+    <div className={`min-h-screen flex items-center justify-center ${colors.bg.base} px-4`}>
       <div className="w-full max-w-sm space-y-8">
         <div className="text-center">
-          <h1 className="text-3xl font-bold text-white tracking-tight">
+          <h1 className={`text-3xl font-bold ${colors.text.primary} tracking-tight`}>
             Workout Tracker
           </h1>
-          <p className="mt-2 text-sm text-gray-400">
+          <p className={`mt-2 text-sm ${colors.text.secondary}`}>
             Track your lifts, progress your body.
           </p>
         </div>
 
-        <div className="bg-gray-900 rounded-2xl p-8 space-y-5 border border-gray-800">
-          <div className="flex rounded-xl overflow-hidden border border-gray-700">
+        <div className={`${colors.bg.elevated} rounded-2xl p-8 space-y-5 border ${colors.border.default}`}>
+          <div className={`flex rounded-xl overflow-hidden border ${colors.border.strong}`}>
             {(["signin", "signup"] as Mode[]).map((m) => (
               <button
                 key={m}
                 type="button"
                 onClick={() => { setMode(m); setError(null); setMessage(null); }}
-                className={`flex-1 py-2 text-sm font-medium transition-colors ${
+                className={`flex-1 py-2 text-sm font-medium ${colors.interactive.base} ${
                   mode === m
-                    ? "bg-gray-700 text-white"
-                    : "text-gray-400 hover:text-white"
+                    ? `${colors.bg.overlay} ${colors.text.primary}`
+                    : `${colors.text.secondary} hover:${colors.text.primary}`
                 }`}
               >
                 {m === "signin" ? "Sign in" : "Sign up"}
@@ -71,19 +72,19 @@ export default function LoginPage() {
           </div>
 
           {error && (
-            <p className="text-sm text-red-400 bg-red-950/50 border border-red-800 rounded-lg px-4 py-3">
+            <p className={`text-sm ${colors.accent.red.text} ${colors.accent.red.bg} border ${colors.accent.red.border} rounded-lg px-4 py-3`}>
               {error}
             </p>
           )}
           {message && (
-            <p className="text-sm text-green-400 bg-green-950/50 border border-green-800 rounded-lg px-4 py-3">
+            <p className={`text-sm ${colors.accent.green.text} ${colors.accent.green.bg} border ${colors.accent.green.border} rounded-lg px-4 py-3`}>
               {message}
             </p>
           )}
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-sm text-gray-400 mb-1.5" htmlFor="email">
+              <label className={`block text-sm ${colors.text.secondary} mb-1.5`} htmlFor="email">
                 Email
               </label>
               <input
@@ -92,13 +93,13 @@ export default function LoginPage() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full rounded-xl bg-gray-800 border border-gray-700 text-white px-4 py-2.5 text-sm placeholder-gray-500 focus:outline-none focus:border-gray-500"
+                className={`w-full rounded-xl ${colors.bg.input} border ${colors.border.strong} ${colors.text.primary} px-4 py-2.5 text-sm placeholder-zinc-600 focus:outline-none focus:border-zinc-500`}
                 placeholder="you@example.com"
               />
             </div>
 
             <div>
-              <label className="block text-sm text-gray-400 mb-1.5" htmlFor="password">
+              <label className={`block text-sm ${colors.text.secondary} mb-1.5`} htmlFor="password">
                 Password
               </label>
               <input
@@ -108,7 +109,7 @@ export default function LoginPage() {
                 minLength={6}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full rounded-xl bg-gray-800 border border-gray-700 text-white px-4 py-2.5 text-sm placeholder-gray-500 focus:outline-none focus:border-gray-500"
+                className={`w-full rounded-xl ${colors.bg.input} border ${colors.border.strong} ${colors.text.primary} px-4 py-2.5 text-sm placeholder-zinc-600 focus:outline-none focus:border-zinc-500`}
                 placeholder="••••••••"
               />
             </div>
@@ -116,13 +117,9 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full rounded-xl bg-white text-gray-900 font-medium py-2.5 text-sm hover:bg-gray-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className={`w-full rounded-xl ${colors.accent.primary} font-medium py-2.5 text-sm disabled:opacity-40 disabled:cursor-not-allowed ${colors.interactive.base}`}
             >
-              {loading
-                ? "..."
-                : mode === "signin"
-                ? "Sign in"
-                : "Create account"}
+              {loading ? "..." : mode === "signin" ? "Sign in" : "Create account"}
             </button>
           </form>
         </div>

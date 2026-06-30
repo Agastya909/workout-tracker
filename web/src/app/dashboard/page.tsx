@@ -1,37 +1,40 @@
 import { createClient } from "@/lib/supabase/server";
+import { colors } from "@/lib/colors";
 import { redirect } from "next/navigation";
+
+const navCards = [
+  { label: "Log Workout", href: "/workouts/new", icon: "💪", accent: colors.accent.orange },
+  { label: "Exercises", href: "/exercises", icon: "🏋️", accent: colors.accent.blue },
+  { label: "Body Metrics", href: "/metrics", icon: "📊", accent: colors.accent.green },
+];
 
 export default async function DashboardPage() {
   const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  const { data: { user } } = await supabase.auth.getUser();
 
   if (!user) redirect("/login");
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
-      <header className="border-b border-gray-800 px-4 py-4 flex items-center justify-between">
-        <h1 className="text-lg font-semibold">Workout Tracker</h1>
-        <span className="text-sm text-gray-400">{user.email}</span>
+    <div className={`min-h-screen ${colors.bg.base} ${colors.text.primary}`}>
+      <header className={`border-b ${colors.border.default} px-4 py-4 flex items-center justify-between`}>
+        <span className="text-base font-semibold tracking-tight">Workout Tracker</span>
+        <span className={`text-xs ${colors.text.muted}`}>{user.email}</span>
       </header>
 
-      <main className="max-w-2xl mx-auto px-4 py-8 space-y-6">
-        <h2 className="text-2xl font-bold">Dashboard</h2>
-        <p className="text-gray-400">
-          Welcome! Start by logging a workout or browsing exercises.
-        </p>
+      <main className="max-w-2xl mx-auto px-4 py-8 space-y-8">
+        <div>
+          <h2 className="text-2xl font-bold">Dashboard</h2>
+          <p className={`mt-1 text-sm ${colors.text.secondary}`}>
+            What are we doing today?
+          </p>
+        </div>
 
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
-          {[
-            { label: "Log Workout", href: "/workouts/new", icon: "💪" },
-            { label: "Exercises", href: "/exercises", icon: "🏋️" },
-            { label: "Body Metrics", href: "/metrics", icon: "📊" },
-          ].map((card) => (
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+          {navCards.map((card) => (
             <a
               key={card.href}
               href={card.href}
-              className="flex flex-col items-center gap-3 rounded-2xl bg-gray-900 border border-gray-800 p-6 hover:border-gray-600 transition-colors"
+              className={`flex flex-col items-center gap-3 rounded-2xl ${colors.bg.elevated} border ${colors.border.default} p-6 ${colors.interactive.base} ${colors.interactive.hoverBorder} ${colors.interactive.hover}`}
             >
               <span className="text-3xl">{card.icon}</span>
               <span className="text-sm font-medium text-center">{card.label}</span>
