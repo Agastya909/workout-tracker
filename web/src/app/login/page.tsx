@@ -84,7 +84,7 @@ export default function LoginPage() {
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className={`block text-sm ${colors.text.secondary} mb-1.5`} htmlFor="email">
+              <label className={`block text-sm font-medium ${colors.text.secondary} mb-1.5`} htmlFor="email">
                 Email
               </label>
               <input
@@ -93,13 +93,13 @@ export default function LoginPage() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className={`w-full rounded-xl ${colors.bg.input} border ${colors.border.strong} ${colors.text.primary} px-4 py-2.5 text-sm placeholder-zinc-600 focus:outline-none focus:border-zinc-500`}
+                className={`w-full rounded-xl ${colors.bg.input} border ${colors.border.strong} ${colors.text.primary} px-4 py-3 text-base placeholder-zinc-600 focus:outline-none focus:border-zinc-500`}
                 placeholder="you@example.com"
               />
             </div>
 
             <div>
-              <label className={`block text-sm ${colors.text.secondary} mb-1.5`} htmlFor="password">
+              <label className={`block text-sm font-medium ${colors.text.secondary} mb-1.5`} htmlFor="password">
                 Password
               </label>
               <input
@@ -109,7 +109,7 @@ export default function LoginPage() {
                 minLength={6}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className={`w-full rounded-xl ${colors.bg.input} border ${colors.border.strong} ${colors.text.primary} px-4 py-2.5 text-sm placeholder-zinc-600 focus:outline-none focus:border-zinc-500`}
+                className={`w-full rounded-xl ${colors.bg.input} border ${colors.border.strong} ${colors.text.primary} px-4 py-3 text-base placeholder-zinc-600 focus:outline-none focus:border-zinc-500`}
                 placeholder="••••••••"
               />
             </div>
@@ -117,7 +117,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className={`w-full rounded-xl ${colors.accent.primary} font-medium py-2.5 text-sm disabled:opacity-40 disabled:cursor-not-allowed ${colors.interactive.base}`}
+              className={`w-full rounded-xl ${colors.accent.primary} font-semibold py-3 text-base disabled:opacity-40 disabled:cursor-not-allowed ${colors.interactive.base}`}
             >
               {loading ? "..." : mode === "signin" ? "Sign in" : "Create account"}
             </button>
