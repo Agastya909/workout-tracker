@@ -9,6 +9,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-poppins);
+  --font-display: var(--font-display);
 }
 
 body {
@@ -16,4 +17,8 @@ body {
   color: var(--foreground);
   font-family: var(--font-poppins), sans-serif;
   -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display), sans-serif;
 }
