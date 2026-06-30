@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Poppins, Inter_Tight } from "next/font/google";
+import { Poppins, Syne } from "next/font/google";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -8,7 +8,7 @@ const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
 });
 
-const interTight = Inter_Tight({
+const syne = Syne({
   variable: "--font-display",
   subsets: ["latin"],
   weight: ["600", "700", "800"],
@@ -25,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${poppins.variable} ${interTight.variable} h-full antialiased`}>
+    <html lang="en" className={`${poppins.variable} ${syne.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
