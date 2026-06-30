@@ -18,7 +18,9 @@ export default async function DashboardPage() {
     <div className={`min-h-screen ${colors.bg.base} ${colors.text.primary}`}>
       <header className={`border-b ${colors.border.default} px-4 py-4 flex items-center justify-between`}>
         <span className="text-base font-semibold tracking-tight">Workout Tracker</span>
-        <span className={`text-xs ${colors.text.muted}`}>{user.email}</span>
+        <a href="/profile" className={`text-xs ${colors.text.muted} hover:${colors.text.primary} ${colors.interactive.base}`}>
+          {user.email}
+        </a>
       </header>
 
       <main className="max-w-2xl mx-auto px-4 py-8 space-y-8">
