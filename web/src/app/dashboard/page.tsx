@@ -3,9 +3,10 @@ import { colors } from "@/lib/colors";
 import { redirect } from "next/navigation";
 
 const navCards = [
-  { label: "Log Workout", href: "/workouts/new", icon: "💪", accent: colors.accent.orange },
-  { label: "Exercises", href: "/exercises", icon: "🏋️", accent: colors.accent.blue },
-  { label: "Body Metrics", href: "/metrics", icon: "📊", accent: colors.accent.green },
+  { label: "Log Workout", href: "/workouts/new", icon: "💪" },
+  { label: "History", href: "/workouts", icon: "📋" },
+  { label: "Exercises", href: "/exercises", icon: "🏋️" },
+  { label: "Body Metrics", href: "/metrics", icon: "📊" },
 ];
 
 export default async function DashboardPage() {
@@ -31,7 +32,7 @@ export default async function DashboardPage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+        <div className="grid grid-cols-2 gap-3">
           {navCards.map((card) => (
             <a
               key={card.href}

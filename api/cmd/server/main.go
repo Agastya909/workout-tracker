@@ -22,14 +22,17 @@ func main() {
 	}
 	defer pool.Close()
 
+	auth, err := middleware.NewAuth(cfg.SupabaseURL)
+	if err != nil {
+		log.Fatalf("auth init: %v", err)
+	}
+
 	mux := http.NewServeMux()
 
 	mux.HandleFunc("GET /health", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 		w.Write([]byte(`{"status":"ok"}`))
 	})
-
-	auth := middleware.Auth(cfg.SupabaseJWTSecret)
 
 	handlers.RegisterExerciseRoutes(mux, pool, auth)
 	handlers.RegisterWorkoutRoutes(mux, pool, auth)
@@ -38,7 +41,7 @@ func main() {
 
 	addr := ":" + cfg.Port
 	log.Printf("server listening on %s", addr)
-	if err := http.ListenAndServe(addr, middleware.CORS(mux)); err != nil {
+	if err := http.ListenAndServe(addr, middleware.Logger(middleware.CORS(mux))); err != nil {
 		log.Fatal(err)
 	}
 }

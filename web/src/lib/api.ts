@@ -2,23 +2,23 @@ import { createClient } from "./supabase/client";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8080";
 
-async function getAuthHeader(): Promise<Record<string, string>> {
+async function getToken(): Promise<string | undefined> {
   const supabase = createClient();
   const { data } = await supabase.auth.getSession();
-  const token = data.session?.access_token;
-  return token ? { Authorization: `Bearer ${token}` } : {};
+  return data.session?.access_token;
 }
 
 export async function apiFetch<T>(
   path: string,
-  options: RequestInit = {}
+  options: RequestInit = {},
+  token?: string
 ): Promise<T> {
-  const authHeaders = await getAuthHeader();
+  const resolved = token ?? (await getToken());
   const res = await fetch(`${API_URL}${path}`, {
     ...options,
     headers: {
       "Content-Type": "application/json",
-      ...authHeaders,
+      ...(resolved ? { Authorization: `Bearer ${resolved}` } : {}),
       ...options.headers,
     },
   });
