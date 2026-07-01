@@ -38,6 +38,8 @@ func main() {
 	handlers.RegisterWorkoutRoutes(mux, pool, auth)
 	handlers.RegisterBodyMetricRoutes(mux, pool, auth)
 	handlers.RegisterUserRoutes(mux, pool, auth)
+	handlers.RegisterRoutineRoutes(mux, pool, auth)
+	handlers.RegisterSessionRoutes(mux, pool, auth)
 
 	addr := ":" + cfg.Port
 	log.Printf("server listening on %s", addr)

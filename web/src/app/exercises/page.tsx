@@ -23,7 +23,7 @@ export default async function ExercisesPage() {
   return (
     <div className={`min-h-screen ${colors.bg.base} ${colors.text.primary}`}>
       <header className={`border-b ${colors.border.default} px-4 py-4 flex items-center justify-between`}>
-        <a href="/dashboard" className={`text-sm ${colors.text.secondary} hover:${colors.text.primary} ${colors.interactive.base}`}>
+        <a href="/" className={`text-sm ${colors.text.secondary} hover:${colors.text.primary} ${colors.interactive.base}`}>
           ← Back
         </a>
         <span className="text-base font-semibold tracking-tight">Exercises</span>

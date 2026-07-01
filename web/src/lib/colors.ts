@@ -50,6 +50,7 @@ export const colors = {
       border: "border-red-800",
       text: "text-red-400",
       badge: "bg-red-900 text-red-300",
+      button: "bg-red-600 text-white hover:bg-red-700",
     },
 
     // Info / neutral highlight

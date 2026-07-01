@@ -4,8 +4,14 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8080";
 
 async function getToken(): Promise<string | undefined> {
   const supabase = createClient();
-  const { data } = await supabase.auth.getSession();
-  return data.session?.access_token;
+  // refreshSession triggers a token refresh if expired; falls back to getSession if no refresh token
+  const { data: { session } } = await supabase.auth.getSession();
+  if (!session) return undefined;
+  if (session.expires_at && session.expires_at * 1000 < Date.now() + 60_000) {
+    const { data } = await supabase.auth.refreshSession();
+    return data.session?.access_token;
+  }
+  return session.access_token;
 }
 
 export async function apiFetch<T>(
