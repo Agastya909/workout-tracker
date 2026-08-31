@@ -9,6 +9,7 @@ const navCards = [
   { label: "Routines", href: "/routines", icon: "📅" },
   { label: "Exercises", href: "/exercises", icon: "🏋️" },
   { label: "Body Metrics", href: "/metrics", icon: "⚖️" },
+  { label: "Progress", href: "/progress", icon: "📈" },
 ];
 
 export default async function HomePage() {
