@@ -29,9 +29,14 @@ export default async function WorkoutsPage() {
           ← Back
         </Link>
         <span className="text-base font-semibold tracking-tight">Workouts</span>
-        <Link href="/workouts/new" className={`text-sm font-semibold ${colors.text.primary} ${colors.interactive.base}`}>
-          + New
-        </Link>
+        <div className="flex items-center gap-3">
+          <Link href="/workouts/import" className={`text-sm ${colors.text.secondary} hover:${colors.text.primary} ${colors.interactive.base}`}>
+            Import
+          </Link>
+          <Link href="/workouts/new" className={`text-sm font-semibold ${colors.text.primary} ${colors.interactive.base}`}>
+            + New
+          </Link>
+        </div>
       </header>
 
       <main className="max-w-2xl mx-auto px-4 py-6 space-y-3">

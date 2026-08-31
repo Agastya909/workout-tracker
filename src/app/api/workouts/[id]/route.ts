@@ -11,7 +11,7 @@ export async function GET(
     const userId = await requireUserId();
     const { id } = await params;
     const { rows } = await pool.query(
-      `SELECT ws.id, ws.exercise_id, e.name as exercise_name, ws.set_number, ws.reps, ws.weight, ws.rpe
+      `SELECT ws.id, ws.exercise_id, e.name as exercise_name, ws.set_number, ws.reps, ws.weight, ws.rpe, ws.is_bodyweight
        FROM workout_sets ws
        JOIN exercises e ON e.id = ws.exercise_id
        JOIN workouts w ON w.id = ws.workout_id

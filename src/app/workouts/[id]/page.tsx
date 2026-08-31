@@ -12,6 +12,7 @@ type WorkoutSet = {
   reps?: number;
   weight?: number;
   rpe?: number;
+  is_bodyweight?: boolean;
 };
 
 export default async function WorkoutDetailPage({ params }: { params: Promise<{ id: string }> }) {
@@ -53,7 +54,8 @@ export default async function WorkoutDetailPage({ params }: { params: Promise<{ 
                 <div key={s.id} className="flex items-center justify-between px-4 py-2.5">
                   <span className={`text-xs ${colors.text.muted}`}>Set {s.set_number}</span>
                   <div className="flex gap-4">
-                    {s.weight != null && <span className="text-sm font-medium">{s.weight} kg</span>}
+                    {s.is_bodyweight && <span className="text-sm font-medium">BW</span>}
+                    {!s.is_bodyweight && s.weight != null && <span className="text-sm font-medium">{s.weight} kg</span>}
                     {s.reps != null && <span className={`text-sm ${colors.text.secondary}`}>× {s.reps}</span>}
                     {s.rpe != null && <span className={`text-xs ${colors.accent.yellow.text}`}>RPE {s.rpe}</span>}
                   </div>
